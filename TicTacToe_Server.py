@@ -101,4 +101,4 @@ class TicTacToe:
                 print("----------")
 
 game = TicTacToe()
-game.host_game("0.0.0.0", 9999)
+game.host_game("localhost", 9999)

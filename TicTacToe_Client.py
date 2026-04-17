@@ -101,4 +101,4 @@ class TicTacToe:
                 print("----------")
 
 game = TicTacToe()
-game.connect_to_game("localhost", 8000)
+game.connect_to_game("localhost", 8000) # Change to server IP
