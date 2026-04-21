@@ -1,9 +1,8 @@
-
 import socket
 
 # Server configuration
 HOST = "0.0.0.0"   # Listen on all network interfaces
-PORT = 5000        # Port number for the game server
+PORT = 5050        # Port number for the game server
 
 # Game constants
 EMPTY = "."
