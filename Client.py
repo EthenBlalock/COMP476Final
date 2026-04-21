@@ -2,8 +2,8 @@ import socket
 import sys
 
 # Default client settings
-DEFAULT_HOST = "127.0.0.1"
-PORT = 5000
+DEFAULT_HOST = "10.198.73.9"
+PORT = 5050
 EMPTY = "."
 
 
