@@ -22,6 +22,13 @@ class TicTacToe:
 
         self.you = "X"
         self.opponent = "O"
+
+        print("Game started!")
+        if self.turn == self.you:
+            print("Your turn")
+        else:
+            print("Opponent's turn... waiting")
+
         threading.Thread(target=self.handle_connection, args=(client,)).start()
         server.close()
 
@@ -31,25 +38,38 @@ class TicTacToe:
 
         self.you = 'O'
         self.opponent = 'X'
+
+        print("\nGame started!")
+        if self.turn == self.you:
+            print("Your turn")
+        else:
+            print("Opponent's turn... waiting")
+
         threading.Thread(target=self.handle_connection, args=(client, )).start()
 
     def handle_connection(self, client):
         while not self.game_over:
             if self.turn == self.you:
+                print("\nYour turn")
                 move = input("Enter a move (row,column): ")
                 if self.check_valid_move(move.split(',')):
                     client.send(move.encode('utf-8'))
                     self.apply_move(move.split(','), self.you)
                     self.turn = self.opponent
+                    if not self.game_over:
+                        print("\nWaiting for opponent's move...")
                 else:
                     print("Invalid move!")
             else:
+                print("\nOpponent's turn... waiting")
                 data = client.recv(1024)
                 if not data:
                     break
                 else:
                     self.apply_move(data.decode('utf-8').split(','), self.opponent)
                     self.turn = self.you
+                    if not self.game_over:
+                        print("\nYour turn")
         client.close()
 
     def apply_move(self, move, player):
@@ -101,4 +121,4 @@ class TicTacToe:
                 print("----------")
 
 game = TicTacToe()
-game.connect_to_game("localhost", 8000) # Change to server IP
+game.connect_to_game("localhost", 9999) # Change to server IP
